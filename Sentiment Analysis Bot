@@ -1,0 +1,43 @@
+from textblob import TextBlob
+
+class SentimentAnalysisChatbot:
+    def _init_(self):
+        pass
+
+    def analyze_sentiment(self, message):
+        # Perform sentiment analysis using TextBlob
+        analysis = TextBlob(message)
+
+        # Determine sentiment polarity
+        if analysis.sentiment.polarity > 0:
+            return "positive"
+        elif analysis.sentiment.polarity == 0:
+            return "neutral"
+        else:
+            return "negative"
+
+    def chat(self):
+        print("Welcome to the Sentiment Analysis Chatbot!")
+        print("You can type your message, and I'll analyze its sentiment.")
+        print("Type 'quit' to exit.")
+        print()
+
+        while True:
+            # Get user input
+            message = input("You: ")
+
+            # Check if user wants to quit
+            if message.lower() == 'quit':
+                print("Goodbye!")
+                break
+
+            # Analyze sentiment of user input
+            sentiment = self.analyze_sentiment(message)
+
+            # Output sentiment analysis result
+            print("Chatbot: Your message has a", sentiment, "sentiment.")
+            print()
+
+if __name__ == "__main__":
+    chatbot = SentimentAnalysisChatbot()
+    chatbot.chat()
